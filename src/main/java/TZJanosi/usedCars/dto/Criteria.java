@@ -7,7 +7,7 @@ import lombok.NoArgsConstructor;
 @Data
 @NoArgsConstructor
 public class Criteria {
-    private String type;
+    private String brand;
     private String model;
     private int maxAgeInYears;
     private int maxKm;
@@ -15,7 +15,7 @@ public class Criteria {
     private SortDirection sortDirection;
 
     public boolean containsCriteria() {
-        if(type!=null){
+        if(brand!=null){
             return true;
         }
         if(model!=null){

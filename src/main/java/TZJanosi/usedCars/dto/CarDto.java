@@ -2,6 +2,7 @@ package TZJanosi.usedCars.dto;
 
 import TZJanosi.usedCars.model.CarCondition;
 import TZJanosi.usedCars.model.KilometerState;
+import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
@@ -10,11 +11,14 @@ import java.util.List;
 
 @Data
 @NoArgsConstructor
+@AllArgsConstructor
 public class CarDto {
     private long id;
-    private String type;
+    private String brand;
     private String model;
     private int ageInYears;
     private CarCondition condition;
-    private List<KilometerState> kilometerStates=new ArrayList<>();
+    private List<KilometerStateDto> kilometerStates=new ArrayList<>();
+
+
 }

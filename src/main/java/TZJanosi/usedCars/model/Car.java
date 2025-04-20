@@ -14,7 +14,7 @@ import java.util.concurrent.locks.Condition;
 @NoArgsConstructor
 public class Car {
     private long id;
-    private String type;
+    private String brand;
     private String model;
     private int ageInYears;
     private CarCondition condition;
@@ -29,7 +29,7 @@ public class Car {
 
     public boolean meetCriteria(Criteria criteria) {
 //        System.out.println("in meetCriteria criteria: "+criteria);
-        if(criteria.getType()!=null && !criteria.getType().equalsIgnoreCase(type)){
+        if(criteria.getBrand()!=null && !criteria.getBrand().equalsIgnoreCase(brand)){
             return false;
         }
         if(criteria.getModel()!=null && !criteria.getModel().equalsIgnoreCase(model)){

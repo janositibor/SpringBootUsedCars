@@ -4,6 +4,7 @@ import TZJanosi.usedCars.dto.CarDto;
 import TZJanosi.usedCars.dto.CreateCarCommand;
 import TZJanosi.usedCars.dto.Criteria;
 import TZJanosi.usedCars.service.CarService;
+import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
@@ -32,6 +33,7 @@ public class CarController {
     }
 
     @PostMapping
+    @ResponseStatus(HttpStatus.CREATED)
     public CarDto addNewCar(@RequestBody CreateCarCommand command){
         return service.addNewCar(command);
     }

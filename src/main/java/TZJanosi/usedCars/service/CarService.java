@@ -31,7 +31,7 @@ public class CarService {
 
     public CarDto addNewCar(CreateCarCommand command) {
         Car car=modelMapper.map(command,Car.class);
-        car.setId(atomicLong.getAndIncrement());
+        car.setId(atomicLong.incrementAndGet());
         cars.add(car);
         return modelMapper.map(car,CarDto.class);
     }
@@ -61,7 +61,7 @@ public class CarService {
 
     public List<String> getBrands() {
         return cars.stream()
-                .map(Car::getType)
+                .map(Car::getBrand)
                 .distinct()
                 .sorted(Comparator.naturalOrder())
                 .toList();
@@ -83,5 +83,10 @@ public class CarService {
         Car car=findCarById(id);
         car.addKilometerState(km);
         return modelMapper.map(car,CarDto.class);
+    }
+
+    public void deleteAllCar() {
+        atomicLong= new AtomicLong();
+        cars.clear();
     }
 }
