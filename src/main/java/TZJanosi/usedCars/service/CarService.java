@@ -3,6 +3,7 @@ package TZJanosi.usedCars.service;
 import TZJanosi.usedCars.dto.CarDto;
 import TZJanosi.usedCars.dto.CreateCarCommand;
 import TZJanosi.usedCars.dto.Criteria;
+import TZJanosi.usedCars.exception.CarNotFoundException;
 import TZJanosi.usedCars.model.Car;
 import org.modelmapper.ModelMapper;
 import org.springframework.stereotype.Service;
@@ -67,7 +68,7 @@ public class CarService {
     }
 
     public Car findCarById(long id) {
-        return cars.stream().filter(c->c.getId()==id).findFirst().orElseThrow(()->new IllegalArgumentException("No car found with id: "+id));
+        return cars.stream().filter(c->c.getId()==id).findFirst().orElseThrow(()->new CarNotFoundException(id));
     }
     public CarDto findCarDtoById(long id) {
         return modelMapper.map(findCarById(id),CarDto.class);

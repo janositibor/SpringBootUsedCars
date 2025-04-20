@@ -29,10 +29,10 @@ public class Car {
 
     public boolean meetCriteria(Criteria criteria) {
 //        System.out.println("in meetCriteria criteria: "+criteria);
-        if(criteria.getType()!=null && !criteria.getType().equals(type)){
+        if(criteria.getType()!=null && !criteria.getType().equalsIgnoreCase(type)){
             return false;
         }
-        if(criteria.getModel()!=null && !criteria.getModel().equals(model)){
+        if(criteria.getModel()!=null && !criteria.getModel().equalsIgnoreCase(model)){
             return false;
         }
         if(criteria.getMaxAgeInYears()>0 && criteria.getMaxAgeInYears()<ageInYears){
