@@ -1,6 +1,7 @@
 package TZJanosi.usedCars.model;
 
 import TZJanosi.usedCars.dto.Criteria;
+import TZJanosi.usedCars.exception.KmStateNotValidException;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
@@ -22,7 +23,7 @@ public class Car {
 
     public void addKilometerState(int km){
         if(actualKmState()>=km){
-            throw new IllegalArgumentException(String.format("Unexpected actual value of km counter! %d km",km));
+            throw new KmStateNotValidException(km);
         }
         kilometerStates.add(new KilometerState(km, LocalDate.now()));
     }
