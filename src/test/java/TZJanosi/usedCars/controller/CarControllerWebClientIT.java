@@ -252,5 +252,15 @@ class CarControllerWebClientIT {
                 .expectBodyList(CarDto.class)
                 .hasSize(3);
     }
+    @Test
+    void allTest(){
+        webTestClient
+                .get()
+                .uri(uriBuilder -> uriBuilder.path("api/cars/all").build())
+                .exchange()
+                .expectBodyList(CarDto.class)
+                .hasSize(4)
+                .contains(new CarDto(4L,"Toyota","Auris",5,CarCondition.EXCELLENT, List.of(new KilometerStateDto(55892, LocalDate.now()))));
+    }
 
 }

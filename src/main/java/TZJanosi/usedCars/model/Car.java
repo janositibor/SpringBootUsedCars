@@ -2,14 +2,12 @@ package TZJanosi.usedCars.model;
 
 import TZJanosi.usedCars.dto.Criteria;
 import TZJanosi.usedCars.exception.KmStateNotValidException;
-import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
 import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.List;
-import java.util.concurrent.locks.Condition;
 
 @Data
 @NoArgsConstructor
@@ -42,7 +40,7 @@ public class Car {
         if(criteria.getCondition()!=null && criteria.getCondition().getValue()>condition.getValue()){
             return false;
         }
-        if(criteria.getMaxKm()>0 && criteria.getMaxKm()<actualKmState()){
+        if(0<criteria.getMaxKm() && criteria.getMaxKm()<actualKmState()){
             return false;
         }
         return true;

@@ -37,7 +37,6 @@ public class CarService {
     }
 
     public List<CarDto> findFilteredCars(Criteria criteria) {
-        System.out.println(criteria);
         if(!criteria.containsCriteria()){
             return findAllCars();
         }
@@ -75,8 +74,8 @@ public class CarService {
     }
 
     public void deleteCarById(long id) {
-        Car carToDeletre=findCarById(id);
-        cars.remove(carToDeletre);
+        Car carToDelete=findCarById(id);
+        cars.remove(carToDelete);
     }
 
     public CarDto addKmState(long id, int km) {

@@ -1,7 +1,6 @@
 package TZJanosi.usedCars.dto;
 
 import TZJanosi.usedCars.model.CarCondition;
-import TZJanosi.usedCars.model.KilometerState;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
