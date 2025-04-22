@@ -80,6 +80,20 @@ class CarControllerWebClientIT {
                 .extracting(c->c.getKilometerStates().getLast().getActualValue())
                 .containsExactly(295000,95000,55892);
     }
+    @Test
+    void testGetCarsWithBrandAndDescOtherStyle(){
+        webTestClient
+                .get()
+                .uri(uriBuilder -> uriBuilder.path("api/cars").queryParam("brand","toyota").queryParam("sortDirection","DESC").build())
+                .exchange()
+                .expectStatus().isOk()
+                .expectBodyList(CarDto.class)
+                .value(list->assertThat(list)
+                        .hasSize(3)
+                        .extracting(c->c.getKilometerStates().getLast().getActualValue())
+                        .containsExactly(295000,95000,55892));
+
+    }
 
     @Test
     void testGetCarsWithBrandAndAsc(){
@@ -172,6 +186,20 @@ class CarControllerWebClientIT {
                 .containsOnly("Toyota","BMW");
 
     }
+    @Test
+    void testGetBrandsOtherStyle(){
+        webTestClient
+                .get()
+                .uri("/api/cars/brands")
+                .exchange()
+                .expectBody(List.class)
+                .value(l->{
+                    l.contains("BMW");
+                    l.contains("Toyota");
+                }
+                );
+    }
+
     @Test
     void testGetCarById(){
         webTestClient
