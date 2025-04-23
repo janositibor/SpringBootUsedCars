@@ -170,6 +170,23 @@ class CarControllerWebClientIT {
                 .returnResult();
         assertThat(result.getResponseBody().getModel()).isEqualTo("Corolla");
     }
+    @Test
+    void testCreateNotValidCar(){
+        webTestClient
+                .post()
+                .uri("/api/cars")
+                .bodyValue(new CreateCarCommand("","Corolla",-1,CarCondition.POOR,295000))
+                .exchange()
+//                .expectStatus().isOk()
+                .expectStatus().isBadRequest()
+                .expectBody()
+                .jsonPath("$.violations").exists()
+                .jsonPath("$.violations[0].field").isEqualTo("ageInYears")
+                .jsonPath("$.violations[0].message").isEqualTo("must be greater than or equal to 0")
+                .jsonPath("$.violations[1].field").isEqualTo("brand")
+                .jsonPath("$.violations[1].message").isEqualTo("must not be blank")
+        ;
+    }
 
     @Test
     void testGetBrands(){
